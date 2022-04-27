@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Proyecto de colegios
+  description: Documentación de API REST de estudiantes
+  termsOfService: http://example.com/terms/
+  contact:
+    name: API Support
+    url: http://www.example.com/support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+
+paths:
+  /v1/api/students:
+    get:
+      description: retorna el listado de estudiantes
+      responses:
+        '200':
+          description: Un listado de estudiantes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/student'
+
+components:
+  schemas:
+    student:
+      type: object
+      properties:
+        studentId:
+          type: integer
+        name:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string

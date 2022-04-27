@@ -1,0 +1,28 @@
+#####
+GET http://ucb.edu.bo:8080/v1/api/nota
+Content-Type: application/json
+
+####
+GET http://localhost:8080/v1/api/students/1
+Content-Type: application/json
+
+
+####
+POST http://localhost:8080/v1/api/students
+Content-Type: application/json
+
+{
+  "name": "Joel",
+  "lastName": "Rojas",
+  "email": "jrojas@gmail.com"
+}
+
+
+#####
+GET http://localhost:8080/v1/api/students/paginate?page=2&size=20
+Content-Type: application/json
+
+#####
+GET http://localhost:8081/v1/api/students/paginate?page=2&size=20
+Content-Type: application/json
+

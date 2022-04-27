@@ -1,0 +1,9 @@
+POST http://localhost:8080/v1/api/producer
+Content-Type: application/json
+
+{
+  "message": "PROBANDO CLUSTERING"
+}
+
+
+###
