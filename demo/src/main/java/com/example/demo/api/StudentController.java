@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,6 +50,10 @@ public class StudentController {
         PageImpl<StudentDto> studentList = studentBl.getStudentsPaginate(page, size);
         LOGGER.info("Invocacion exitosa para obtener el listado de estudiantes {}", studentList);
 
+        template.convertAndSend(RabbitMqConfig.DIRECT_EXCHANGE, RabbitMqConfig.ROUTING_KEY_1, studentList);
+        template.convertAndSend(RabbitMqConfig.FANOUT_EXCHANGE, "",studentList);
+        template.convertAndSend(RabbitMqConfig.TOPIC_EXCHANGE,RabbitMqConfig.T_ROUTING_KEY1,studentList);
+
         return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 
@@ -56,6 +62,12 @@ public class StudentController {
         LOGGER.info("Invocando al servicio REST para obtener el listado de estudiantes con KEY: {}", key);
         List<Student> studentList = studentBl.getStudents();
         LOGGER.info("Invocacion exitosa para obtener el listado de estudiantes {}", studentList);
+
+        template.convertAndSend(RabbitMqConfig.DIRECT_EXCHANGE, RabbitMqConfig.ROUTING_KEY_1, studentList);
+        template.convertAndSend(RabbitMqConfig.FANOUT_EXCHANGE, "",studentList);
+        template.convertAndSend(RabbitMqConfig.TOPIC_EXCHANGE,RabbitMqConfig.T_ROUTING_KEY1,studentList);
+
+
         return new ResponseEntity<>(studentList, HttpStatus.OK);
     }
 
@@ -65,6 +77,11 @@ public class StudentController {
         LOGGER.info("Invocando al servicio REST para obtener el estudiante con id: {}", id);
         Student student = studentBl.getStudentById(id);
         LOGGER.info("Invocacion exitosa para obtener el estudiantes {}", student);
+
+        template.convertAndSend(RabbitMqConfig.DIRECT_EXCHANGE, RabbitMqConfig.ROUTING_KEY_1, student);
+        template.convertAndSend(RabbitMqConfig.FANOUT_EXCHANGE, "",student);
+        template.convertAndSend(RabbitMqConfig.TOPIC_EXCHANGE,RabbitMqConfig.T_ROUTING_KEY1,student);
+
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
@@ -73,9 +90,11 @@ public class StudentController {
     public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
         LOGGER.info("Invocando al servicio REST para registrar un estudiante con la siguiente información: {}", student);
         Student result = studentBl.saveStudent(student);
-
-        template.convertAndSend(RabbitMqConfig.DIRECT_EXCHANGE, RabbitMqConfig.ROUTING_KEY_1, result);
-
+        List<Student> studentList = new ArrayList<>();
+        studentList.add(result);
+        template.convertAndSend(RabbitMqConfig.DIRECT_EXCHANGE, RabbitMqConfig.ROUTING_KEY_1, studentList);
+        template.convertAndSend(RabbitMqConfig.FANOUT_EXCHANGE, "",studentList);
+        template.convertAndSend(RabbitMqConfig.TOPIC_EXCHANGE,RabbitMqConfig.T_ROUTING_KEY1,studentList);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }

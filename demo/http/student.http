@@ -1,5 +1,5 @@
 #####
-GET http://ucb.edu.bo:8080/v1/api/nota
+GET http://localhost:8080/v1/api/students
 Content-Type: application/json
 
 ####
@@ -12,9 +12,9 @@ POST http://localhost:8080/v1/api/students
 Content-Type: application/json
 
 {
-  "name": "Ricardo",
-  "lastName": "Montero",
-  "email": "fabiorvm@gmail.com"
+  "name": "tomas1",
+  "lastName": "ayala1",
+  "email": "tomi1@gmail.com"
 }
 
 

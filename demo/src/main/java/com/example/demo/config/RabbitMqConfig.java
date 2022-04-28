@@ -27,13 +27,13 @@ public class RabbitMqConfig {
     * Direct exchange values
      */
     public static final String DIRECT_EXCHANGE = "direct_exchange";
-    public static final String D_QUEUE1 = "student_queue";
+    public static final String D_QUEUE1 = "d_student_queue";
     public static final String ROUTING_KEY_1 = "student";
 
-    public static final String D_QUEUE2 = "teacher_queue";
+    public static final String D_QUEUE2 = "d_teacher_queue";
     public static final String ROUTING_KEY_2 = "teacher";
 
-    public static final String D_QUEUE3 = "subject_queue";
+    public static final String D_QUEUE3 = "d_subject_queue";
     public static final String ROUTING_KEY_3 = "subject";
 
     /*
