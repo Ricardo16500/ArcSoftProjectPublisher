@@ -51,14 +51,14 @@ public class RabbitMqConfig {
     public static final String T_QUEUE_2 = "t_subject_queue";
     public static final String T_QUEUE_3 = "t_teacher_queue";
     public static final String T_QUEUE_4 = "t_total_queue";
-    public static final String T_QUEUE_5 = "t_student_teacher_queue";
+
     public static final String TOPIC_EXCHANGE = "topic_exchange";
 
     public static final String T_ROUTING_KEY1= "topic.student";
     public static final String T_ROUTING_KEY2= "topic.subject";
     public static final String T_ROUTING_KEY3= "topic.teacher";
     public static final String T_ROUTING_KEY4= "topic.*";
-    public static final String T_ROUTING_KEY5= "topic.#";
+
 
     /*
     *
@@ -193,10 +193,7 @@ public class RabbitMqConfig {
     public Queue teQueue4(){
         return new Queue(T_QUEUE_4);
     }
-    @Bean
-    public Queue teQueue5(){
-        return new Queue(T_QUEUE_5);
-    }
+
 
     @Bean
     public Binding tBinding (Queue teQueue, TopicExchange topicExchange){
@@ -226,11 +223,5 @@ public class RabbitMqConfig {
                 .to(topicExchange)
                 .with(T_ROUTING_KEY4);
     }
-    @Bean
-    public Binding tBinding5 (Queue teQueue5, TopicExchange topicExchange){
-        return BindingBuilder
-                .bind(teQueue5)
-                .to(topicExchange)
-                .with(T_ROUTING_KEY5);
-    }
+
 }
