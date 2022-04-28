@@ -1,0 +1,24 @@
+GET http://localhost:8080/v1/api/subject
+Accept: application/json
+
+###
+GET http://localhost:8080/v1/api/subject/1
+Accept: application/json
+
+###
+POST http://localhost:8080/v1/api/subject
+Content-Type: application/json
+
+{
+
+  "name": "analisis algoritmos3",
+  "semester": "6",
+  "credits": "7",
+  "status": "0"
+
+}
+
+###
+
+
+
