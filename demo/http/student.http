@@ -12,9 +12,9 @@ POST http://localhost:8080/v1/api/students
 Content-Type: application/json
 
 {
-  "name": "Joel",
-  "lastName": "Rojas",
-  "email": "jrojas@gmail.com"
+  "name": "Ricardo",
+  "lastName": "Montero",
+  "email": "fabiorvm@gmail.com"
 }
 
 
